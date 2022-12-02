@@ -10,24 +10,54 @@ import utility.HTMLReportGenerator;
 public class Hookable 
 {
 
-@Before
-   public void before(Scenario scenario) throws UnknownHostException
-   {
-	HTMLReportGenerator.TestSuiteStart("D:\\batch\\report.html", "Flipkart");
-	  HTMLReportGenerator.TestCaseStart(scenario.getName(), scenario.getStatus());
-	  
-	  System.out.println("--------------Starts---------------"); 
-	   
-	   
-   }
+	
+	
+	@Before
+	public void before(Scenario scenario) throws UnknownHostException
+	{
+		HTMLReportGenerator.TestSuiteStart("D:\\batch\\report.html", "Flipkart");
+		HTMLReportGenerator.TestCaseStart(scenario.getName(), scenario.getStatus());
+		
+		System.out.println("------------Starts------------");
 
-@After
-    public void after(Scenario scenario)
-    {
-  	  System.out.println("--------------Ends---------------"); 
-  	  
-  	HTMLReportGenerator.TestCaseEnd();
-  	    HTMLReportGenerator.TestSuiteEnd();
+	}
+	
+	@After
+	public void after()
+	{
+	    System.out.println("------------Ends------------");
+	    
+	    HTMLReportGenerator.TestCaseEnd();
+	    HTMLReportGenerator.TestSuiteEnd();
+	    
+	    
     }
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

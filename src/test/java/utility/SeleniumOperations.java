@@ -12,7 +12,8 @@ public class SeleniumOperations
 {
 	
 	public static ChromeDriver driver=null;
-	public static Hashtable<String,Object> outputparameters= new Hashtable<String,Object>();
+	
+	public static Hashtable<String,Object> outputParameters=new Hashtable<String,Object>();
 	
 	//browserLaunch
 	public static Hashtable<String,Object> browserLaunch(Object [] inputParameters)
@@ -21,23 +22,23 @@ public class SeleniumOperations
 		{
 		String key= (String) inputParameters[0];
 		String value=(String) inputParameters[1];
-		System.setProperty(key, value);
 		
+		System.setProperty(key, value);
+		driver=new ChromeDriver();
 		driver.manage().window().maximize();
 		
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 		
-		outputparameters.put("STATUS", "PASS");
-		outputparameters.put("MESSAGE", "methodUsed:browserLaunch, InputGiven: " +inputParameters[0].toString());
-
+		outputParameters.put("STATUS", "PASS");
+		outputParameters.put("MESSAGE", "methodUsed:browserLaunch,InputGiven: " + inputParameters[0].toString());
 		}
 		catch(Exception e)
 		{
-			outputparameters.put("STATUS", "FAIL");
-			outputparameters.put("MESSAGE", "methodUsed:browserLaunch, InputGiven: " +inputParameters[0].toString());
-
+			outputParameters.put("STATUS", "FAIL");
+			outputParameters.put("MESSAGE", "methodUsed:browserLaunch,InputGiven: " + inputParameters[0].toString());
+		
 		}
-		return outputparameters;
+		return outputParameters;
 
 	}
 	
@@ -51,19 +52,19 @@ public class SeleniumOperations
 	
 	      driver.get(url);
 			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-			outputparameters.put("STATUS", "PASS");
-			outputparameters.put("MESSAGE", "methodUsed:openApplication, InputGiven: " +inputParameters[0].toString());
-
-
+			
+			outputParameters.put("STATUS", "PASS");
+			outputParameters.put("MESSAGE", "methodUsed:openApplication,InputGiven: " + inputParameters[0].toString());
+			
 		}
 		catch(Exception e)
 		{
-			outputparameters.put("STATUS", "FAIL");
-			outputparameters.put("MESSAGE", "methodUsed:openApplication, InputGiven: " +inputParameters[0].toString());
-
+			outputParameters.put("STATUS", "FAIL");
+			outputParameters.put("MESSAGE", "methodUsed:openApplication,InputGiven: " + inputParameters[0].toString());
+			
 		}
-		return outputparameters;
-		
+		return outputParameters;
+
     }
 	
 	
@@ -77,17 +78,18 @@ public class SeleniumOperations
 		
 		     driver.findElementByXPath(xpath).click();
 				driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-				outputparameters.put("STATUS", "PASS");
-				outputparameters.put("MESSAGE", "methodUsed:clickOnElement, InputGiven: " +inputParameters[0].toString());
-
+				
+				outputParameters.put("STATUS", "PASS");
+				outputParameters.put("MESSAGE", "methodUsed:clickOnElement,InputGiven: " + inputParameters[0].toString());
+					
 			}
 			catch(Exception e)
 			{
-				outputparameters.put("STATUS", "FAIL");
-				outputparameters.put("MESSAGE", "methodUsed:clickOnElement, InputGiven: " +inputParameters[0].toString());
-
+				outputParameters.put("STATUS", "FAIL");
+				outputParameters.put("MESSAGE", "methodUsed:clickOnElement,InputGiven: " + inputParameters[0].toString());
+				
 			}
-			return outputparameters;
+			return outputParameters;
 	   }
 		
 		
@@ -103,18 +105,18 @@ public class SeleniumOperations
 				WebElement one=driver.findElementByXPath(xpath);
 				 act.moveToElement(one).build().perform();
 					driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-					outputparameters.put("STATUS", "PASS");
-					outputparameters.put("MESSAGE", "methodUsed:mouseOver, InputGiven: " +inputParameters[0].toString());
-
+					
+					outputParameters.put("STATUS", "PASS");
+					outputParameters.put("MESSAGE", "methodUsed:mouseOver,InputGiven: " + inputParameters[0].toString());
+							
 			}
 			catch(Exception e)
 			{
-				outputparameters.put("STATUS", "FAIL");
-				outputparameters.put("MESSAGE", "methodUsed:mouseOver, InputGiven: " +inputParameters[0].toString());
-
+				outputParameters.put("STATUS", "FAIL");
+				outputParameters.put("MESSAGE", "methodUsed:mouseOver,InputGiven: " + inputParameters[0].toString());
+				
 			}
-			return outputparameters;
-
+			return outputParameters;
 		}
 		
 		
@@ -129,17 +131,17 @@ public class SeleniumOperations
 			driver.findElementByXPath(xpath).sendKeys(text);
 			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 			
-			outputparameters.put("STATUS", "PASS");
-			outputparameters.put("MESSAGE", "methodUsed:sendText, InputGiven: " +inputParameters[1].toString());
-
+			outputParameters.put("STATUS", "PASS");
+			outputParameters.put("MESSAGE", "methodUsed:sendText,InputGiven: " + inputParameters[1].toString());
+			
 	   		}
 	   		catch(Exception e)
 			{
-	   			outputparameters.put("STATUS", "FAIL");
-				outputparameters.put("MESSAGE", "methodUsed:sendText, InputGiven: " +inputParameters[1].toString());
-
+	   			outputParameters.put("STATUS", "FAIL");
+				outputParameters.put("MESSAGE", "methodUsed:sendText,InputGiven: " + inputParameters[1].toString());
+				
 			}
-	   		return outputparameters;
+	   		return outputParameters;
 		}
 	   	
 	   	
@@ -150,33 +152,35 @@ public class SeleniumOperations
 	   	{
 	   		try
 	   		{
-	   		String requiredUrl= (String) inputParameters[0];
-			
-	   		String catchUrl =driver.getCurrentUrl();
 	   		
-	   		if(catchUrl.equalsIgnoreCase(requiredUrl))
+	   		String requiredUrl= (String) inputParameters[0];
+	   		
+	   		String catchUrl=driver.getCurrentUrl();	
+	   		
+			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+
+			if(catchUrl.equalsIgnoreCase(requiredUrl))
 	   		{
 	   			System.out.println("Test Case Pass");
+	   			
+	   			outputParameters.put("STATUS", "PASS");
+				outputParameters.put("MESSAGE", "methodUsed:validateLogin,InputGiven: " + inputParameters[0].toString());
+				
 	   		}
 	   		
 	   		else
 	   		{
 	   			System.out.println("Test Case Fail");
 	   		}
-			driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	   		
 			
-			outputparameters.put("STATUS", "PASS");
-			outputparameters.put("MESSAGE", "methodUsed:validateLogin, InputGiven: " +inputParameters[0].toString());
-
 	   		}
 	   		catch(Exception e)
 			{
-	   			outputparameters.put("STATUS", "FAIL");
-				outputparameters.put("MESSAGE", "methodUsed:validateLogin, InputGiven: " +inputParameters[0].toString());
-
+	   			outputParameters.put("STATUS", "FAIL");
+				outputParameters.put("MESSAGE", "methodUsed:validateLogin,InputGiven: " + inputParameters[0].toString());
 			}
-	   		return outputparameters;
-
+	   		return outputParameters;
 	   	}
 	   	
 	   	

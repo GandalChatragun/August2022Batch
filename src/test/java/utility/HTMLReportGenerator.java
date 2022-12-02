@@ -8,8 +8,11 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import com.relevantcodes.extentreports.NetworkMode;
 
-public class HTMLReportGenerator
+
+
+public class HTMLReportGenerator 
 {
+
 	static ExtentReports testsuiteobj=null;
 	static ExtentTest testcaseobj; 
 	static boolean isShowImage=false;
@@ -106,7 +109,12 @@ public class HTMLReportGenerator
 
 
 
-              
+
+
+
+
+
+
 
 
 
